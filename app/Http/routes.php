@@ -25,6 +25,9 @@ Route::post('login', 'Auth\AuthController@postLogin')->name('login.post');
 
 Route::get('logout', 'Auth\AuthController@getLogout')->name('logout.get');
 
+Route::get('/', 'WelcomeController@index');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
 });
